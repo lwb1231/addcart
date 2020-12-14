@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .text-cut-2 {
+            height: 39px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+
+        .item {
+            width: 40%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        .item img {
+            width: 100%;
+        }
+
+        .item button {}
+
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .color-red {
+            color: red;
+        }
+
+        .float-action {
+            background: #fff;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            position: fixed;
+            right: 10px;
+            bottom: 28px;
+            z-index: 996;
+            border: 1px solid #CCCCCC;
+            text-align: center;
+            line-height: 42px;
+        }
+
+        .float-action .cuIcon-cart {
+            font-size: 12px;
+            color: #CCCCCC;
+        }
+
+        .float-action .num {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        .animate {
+            position: fixed;
+            border-radius: 50%;
+            z-index: 995;
+            transform-origin: 50% 50%;
+            left: -40px;
+            bottom: 120px;
+            transition: transform linear 0.5s, left linear 0.5s, top cubic-bezier(0.3, -0.2, 1, 0) 0.5s !important;
+        }
+
+        .animate img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="list">
+            <div class="item">
+                <dl>
+                    <dt> <img src="./img/p1.png" alt=""></dt>
+                    <dd><span class=" text-cut-2">【京选好货】手办DC周边摆件 蝙蝠侠雕像1/6黑暗骑士造型GK老爷树脂模型摆件正义联盟 GK蝙蝠侠树脂雕像
+                            全新现货【高约36CM】</span>
+                        <span class="color-red">$ 100</span><br>
+                        <button class="btn">加入购物车</button>
+                    </dd>
+                </dl>
+            </div>
+            <div class="item">
+                <dl>
+                    <dt> <img src="./img/p2.png" alt=""></dt>
+                    <dd><span class=" text-cut-2"> 【限时秒杀】大型拼装蝙蝠战车兼容乐高积木拼插男孩玩具英雄蝙蝠侠大电影绝版装甲车 【升级版】盒装现货</span>
+                        <span class="color-red">$ 200</span><br>
+                        <button class="btn">加入购物车</button>
+                    </dd>
+                </dl>
+            </div>
+            <div class="item">
+                <dl>
+                    <dt> <img src="./img/p1.png" alt=""></dt>
+                    <dd><span class=" text-cut-2">【京选好货】手办DC周边摆件 蝙蝠侠雕像1/6黑暗骑士造型GK老爷树脂模型摆件正义联盟 GK蝙蝠侠树脂雕像
+                            全新现货【高约36CM】</span>
+                        <span class="color-red">$ 300</span><br>
+                        <button class="btn">加入购物车</button>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="float-action">
+        <div class="color-red num"></div>
+        <span class="cuIcon-cart">购物车</span>
+    </div>
+    <div class="animate"
+       >
+        <img src="./img/p2.png"></img>
+    </div>
+    <script>
+        var ind =0;
+        $('.list .item .btn').click(function () {
+            ind++
+            $('.animate').show()
+            var index = $(this).parents('.item').index()
+            var imgUrl = $('.list .item').eq(index).find('img').attr('src')
+            $('.animate img').attr('src',imgUrl)
+            // console.log(index);
+            $('.animate').stop().animate({ left: "160%",bottom:'28px' }, 1000,'linear',function(){
+                $('.num').html(ind)
+                $('.animate').hide().css({ left: "-40px",bottom:'120px' })
+            });
+        })
+    </script>
+</body>
+
+</html>
